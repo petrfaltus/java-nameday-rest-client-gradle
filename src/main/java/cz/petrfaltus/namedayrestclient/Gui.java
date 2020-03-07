@@ -15,12 +15,17 @@ import javax.swing.JOptionPane;
 
 public class Gui extends JFrame {
 
+    private JMenuItem menuItemExit;
     private JMenuItem menuItemAbout;
 
     private class MenuItemsButtonsListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
             Object source = event.getSource();
+
+            if (source == menuItemExit) {
+                System.exit(0);
+            }
 
             if (source == menuItemAbout) {
                 AboutApplication();
@@ -52,6 +57,16 @@ public class Gui extends JFrame {
     private void Menu() {
         MenuItemsButtonsListener menuItemsListener = new MenuItemsButtonsListener();
 
+        // File menu items
+        menuItemExit = new JMenuItem("Exit");
+        menuItemExit.setToolTipText("Exit the application");
+        menuItemExit.setMnemonic(KeyEvent.VK_X);
+        menuItemExit.addActionListener(menuItemsListener);
+
+        JMenu menuFile = new JMenu("File");
+        menuFile.setMnemonic(KeyEvent.VK_F);
+        menuFile.add(menuItemExit);
+
         // horizontal menu glue
         Component horizontalGlue = Box.createHorizontalGlue();
 
@@ -67,6 +82,7 @@ public class Gui extends JFrame {
 
         // final menu bar
         JMenuBar menuBar = new JMenuBar();
+        menuBar.add(menuFile);
         menuBar.add(horizontalGlue);
         menuBar.add(menuInfo);
 
