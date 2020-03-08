@@ -29,6 +29,8 @@ public class Gui extends JFrame {
     private static final int GAP_INNER = 8;
     private static final int GAP_BORDER = 18;
 
+    private static final String EMPTY_STRING = "";
+
     private JMenuItem menuItemExit;
     private JMenuItem menuItemAbout;
 
@@ -49,6 +51,10 @@ public class Gui extends JFrame {
 
             if (source == menuItemAbout) {
                 AboutApplication();
+            }
+
+            if (source == searchButton) {
+                searching();
             }
         }
     }
@@ -72,6 +78,35 @@ public class Gui extends JFrame {
         message += " ";
 
         JOptionPane.showMessageDialog(this, message, AboutApplicationGetTitle(), JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private String searchingGetTitle() {
+        String title = "Name days searching";
+        return title;
+    }
+
+    private void searching() {
+        String question = "Really start the searching ?";
+        String title = searchingGetTitle();
+        int n = JOptionPane.showConfirmDialog(this, question, title, JOptionPane.YES_NO_OPTION);
+
+        if (n != 0) {
+            return;
+        }
+
+        String query = queryTextField.getText();
+        if (query.equals(EMPTY_STRING)) {
+            String message = "The name or date cannot be empty";
+            JOptionPane.showMessageDialog(this, message, searchingGetTitle(), JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String result = Search.run(query);
+        resultTextArea.setText(result);
+        resultTextArea.setCaretPosition(0);
+
+        queryTextField.setText(EMPTY_STRING);
+        queryTextField.requestFocus();
     }
 
     private void Menu() {
@@ -112,6 +147,8 @@ public class Gui extends JFrame {
     private void Body() {
         Dimension gapInner = new Dimension(GAP_INNER, GAP_INNER);
 
+        MenuItemsButtonsListener buttonsListener = new MenuItemsButtonsListener();
+
         // query line
         JLabel queryLabel = new JLabel("Name or date: ");
         queryTextField = new JTextField();
@@ -122,8 +159,9 @@ public class Gui extends JFrame {
 
         // search button line
         searchButton = new JButton("Search");
-        searchButton.setToolTipText("Name days searching");
+        searchButton.setToolTipText(searchingGetTitle());
         searchButton.setMnemonic(KeyEvent.VK_A);
+        searchButton.addActionListener(buttonsListener);
 
         Container search = Box.createHorizontalBox();
         search.add(Box.createHorizontalGlue());
