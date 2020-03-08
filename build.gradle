@@ -1,0 +1,53 @@
+buildscript {
+   repositories {
+      jcenter()
+   }
+
+   dependencies {
+      classpath 'edu.sc.seis.gradle:launch4j:2.4.6'
+   }
+}
+
+repositories {
+   jcenter()
+}
+
+apply plugin: 'java'
+apply plugin: 'edu.sc.seis.launch4j'
+
+version = '1.0-SNAPSHOT'
+sourceCompatibility = 1.7
+
+def myMainClassName = 'cz.petrfaltus.namedayrestclient.NameDayRestClient'
+
+tasks.withType(JavaCompile) {
+   options.encoding = 'UTF-8'
+}
+
+dependencies {
+   compile 'com.googlecode.json-simple:json-simple:1.1.1'
+   testCompile 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
+}
+
+test {
+   useJUnitPlatform()
+}
+
+jar {
+   manifest {
+      attributes 'Main-Class': myMainClassName
+   }
+
+   from {
+      configurations.compile.collect {
+         it.isDirectory() ? it : zipTree(it)
+      }
+   }
+}
+
+createExe {
+   mainClassName = myMainClassName
+   icon = "${projectDir}/ico/namedayrestclient.ico"
+   copyright = "Petr Faltus 2020"
+   companyName = "Petr Faltus SW and HW development"
+}
