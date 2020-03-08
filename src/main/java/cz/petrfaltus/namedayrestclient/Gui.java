@@ -50,7 +50,7 @@ public class Gui extends JFrame {
             }
 
             if (source == menuItemAbout) {
-                AboutApplication();
+                aboutApplication();
             }
 
             if (source == searchButton) {
@@ -59,12 +59,12 @@ public class Gui extends JFrame {
         }
     }
 
-    private String AboutApplicationGetTitle() {
+    private String aboutApplicationGetTitle() {
         String title = "About the " + this.getTitle();
         return title;
     }
 
-    private void AboutApplication() {
+    private void aboutApplication() {
         String message = "Author: Petr Faltus © March 2020";
         message += System.lineSeparator();
         message += System.lineSeparator();
@@ -77,7 +77,7 @@ public class Gui extends JFrame {
 
         message += " ";
 
-        JOptionPane.showMessageDialog(this, message, AboutApplicationGetTitle(), JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, message, aboutApplicationGetTitle(), JOptionPane.INFORMATION_MESSAGE);
     }
 
     private String searchingGetTitle() {
@@ -109,7 +109,7 @@ public class Gui extends JFrame {
         queryTextField.requestFocus();
     }
 
-    private void Menu() {
+    private void menu() {
         MenuItemsButtonsListener menuItemsListener = new MenuItemsButtonsListener();
 
         // File menu items
@@ -127,7 +127,7 @@ public class Gui extends JFrame {
 
         // Info menu items
         menuItemAbout = new JMenuItem("About");
-        menuItemAbout.setToolTipText(AboutApplicationGetTitle());
+        menuItemAbout.setToolTipText(aboutApplicationGetTitle());
         menuItemAbout.setMnemonic(KeyEvent.VK_A);
         menuItemAbout.addActionListener(menuItemsListener);
 
@@ -144,7 +144,7 @@ public class Gui extends JFrame {
         this.setJMenuBar(menuBar);
     }
 
-    private void Body() {
+    private void body() {
         Dimension gapInner = new Dimension(GAP_INNER, GAP_INNER);
 
         MenuItemsButtonsListener buttonsListener = new MenuItemsButtonsListener();
@@ -199,7 +199,7 @@ public class Gui extends JFrame {
     public Gui(String title) {
         super(title);
 
-        Menu();
-        Body();
+        menu();
+        body();
     }
 }
