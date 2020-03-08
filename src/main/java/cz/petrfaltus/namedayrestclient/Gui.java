@@ -29,8 +29,6 @@ public class Gui extends JFrame {
     private static final int GAP_INNER = 8;
     private static final int GAP_BORDER = 18;
 
-    private static final String EMPTY_STRING = "";
-
     private JMenuItem menuItemExit;
     private JMenuItem menuItemAbout;
 
@@ -95,17 +93,23 @@ public class Gui extends JFrame {
         }
 
         String query = queryTextField.getText();
-        if (query.equals(EMPTY_STRING)) {
+        if (query.equals(Const.EMPTY_STRING)) {
             String message = "The name or date cannot be empty";
             JOptionPane.showMessageDialog(this, message, searchingGetTitle(), JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         String result = Search.run(query);
+        if (result == null) {
+            String message = Search.getLastError();
+            JOptionPane.showMessageDialog(this, message, searchingGetTitle(), JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         resultTextArea.setText(result);
         resultTextArea.setCaretPosition(0);
 
-        queryTextField.setText(EMPTY_STRING);
+        queryTextField.setText(Const.EMPTY_STRING);
         queryTextField.requestFocus();
     }
 
