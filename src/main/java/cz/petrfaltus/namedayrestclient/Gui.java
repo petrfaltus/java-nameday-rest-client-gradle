@@ -3,6 +3,7 @@ package cz.petrfaltus.namedayrestclient;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Image;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +12,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -221,6 +223,11 @@ public class Gui extends JFrame {
 
     public Gui(String title) {
         super(title);
+
+        // application icon
+        ImageIcon imageIcon = Icons.getResource("/ico/namedayrestclient.png");
+        Image image = imageIcon.getImage();
+        this.setIconImage(image);
 
         menu();
         body();
