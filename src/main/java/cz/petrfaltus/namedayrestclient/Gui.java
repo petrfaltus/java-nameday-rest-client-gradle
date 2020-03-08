@@ -54,7 +54,7 @@ public class Gui extends JFrame {
                 aboutApplication();
             }
 
-            if ((source == searchButton) || (source == menuItemSearch)) {
+            if ((source == searchButton) || (source == menuItemSearch) || (source == queryTextField)) {
                 searching();
             }
         }
@@ -176,6 +176,7 @@ public class Gui extends JFrame {
         // query line
         JLabel queryLabel = new JLabel("Name or date: ");
         queryTextField = new JTextField();
+        queryTextField.addActionListener(buttonsListener);
 
         Container query = Box.createHorizontalBox();
         query.add(queryLabel);
