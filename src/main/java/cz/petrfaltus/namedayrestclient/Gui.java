@@ -1,22 +1,42 @@
 package cz.petrfaltus.namedayrestclient;
 
 import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import javax.swing.border.Border;
 
 public class Gui extends JFrame {
+    private static final int GAP_INNER = 8;
+    private static final int GAP_BORDER = 18;
 
     private JMenuItem menuItemExit;
     private JMenuItem menuItemAbout;
+
+    private JTextField queryTextField;
+
+    private JButton searchButton;
+
+    private JTextArea resultTextArea;
 
     private class MenuItemsButtonsListener implements ActionListener {
         @Override
@@ -89,9 +109,59 @@ public class Gui extends JFrame {
         this.setJMenuBar(menuBar);
     }
 
+    private void Body() {
+        Dimension gapInner = new Dimension(GAP_INNER, GAP_INNER);
+
+        // query line
+        JLabel queryLabel = new JLabel("Name or date: ");
+        queryTextField = new JTextField();
+
+        Container query = Box.createHorizontalBox();
+        query.add(queryLabel);
+        query.add(queryTextField);
+
+        // search button line
+        searchButton = new JButton("Search");
+        searchButton.setToolTipText("Name days searching");
+        searchButton.setMnemonic(KeyEvent.VK_A);
+
+        Container search = Box.createHorizontalBox();
+        search.add(Box.createHorizontalGlue());
+        search.add(searchButton);
+
+        // result text area
+        resultTextArea = new JTextArea(85, 250);
+        resultTextArea.setEditable(false);
+        resultTextArea.setLineWrap(false);
+
+        JScrollPane resultScrollPane = new JScrollPane(resultTextArea);
+
+        // final panel
+        JPanel panel = new JPanel();
+
+        Border panelBorder = BorderFactory.createEmptyBorder(GAP_BORDER, GAP_BORDER, GAP_BORDER, GAP_BORDER);
+        panel.setBorder(panelBorder);
+
+        BoxLayout panelLayout = new BoxLayout(panel, BoxLayout.PAGE_AXIS);
+        panel.setLayout(panelLayout);
+
+        panel.add(query);
+        panel.add(Box.createRigidArea(gapInner));
+        panel.add(Box.createRigidArea(gapInner));
+        panel.add(search);
+        panel.add(Box.createRigidArea(gapInner));
+        panel.add(Box.createRigidArea(gapInner));
+        panel.add(resultScrollPane);
+
+        // final container
+        Container container = getContentPane();
+        container.add(panel);
+    }
+
     public Gui(String title) {
         super(title);
 
         Menu();
+        Body();
     }
 }
