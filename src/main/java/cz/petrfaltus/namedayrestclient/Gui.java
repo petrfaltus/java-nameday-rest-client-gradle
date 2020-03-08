@@ -121,20 +121,24 @@ public class Gui extends JFrame {
         menuItemExit = new JMenuItem("Exit");
         menuItemExit.setToolTipText("Exit the application");
         menuItemExit.setMnemonic(KeyEvent.VK_X);
+        menuItemExit.setIcon(Icons.getResource("/ico/exit.png"));
         menuItemExit.addActionListener(menuItemsListener);
 
         JMenu menuFile = new JMenu("File");
         menuFile.setMnemonic(KeyEvent.VK_F);
+        menuFile.setIcon(Icons.getResource("/ico/file.png"));
         menuFile.add(menuItemExit);
 
         // Run menu items
         menuItemSearch = new JMenuItem("Search");
         menuItemSearch.setToolTipText(searchingGetTitle());
         menuItemSearch.setMnemonic(KeyEvent.VK_A);
+        menuItemSearch.setIcon(Icons.getResource("/ico/search.png"));
         menuItemSearch.addActionListener(menuItemsListener);
 
         JMenu menuRun = new JMenu("Run");
         menuRun.setMnemonic(KeyEvent.VK_R);
+        menuRun.setIcon(Icons.getResource("/ico/run.png"));
         menuRun.add(menuItemSearch);
 
         // horizontal menu glue
@@ -144,10 +148,12 @@ public class Gui extends JFrame {
         menuItemAbout = new JMenuItem("About");
         menuItemAbout.setToolTipText(aboutApplicationGetTitle());
         menuItemAbout.setMnemonic(KeyEvent.VK_A);
+        menuItemAbout.setIcon(Icons.getResource("/ico/about.png"));
         menuItemAbout.addActionListener(menuItemsListener);
 
         JMenu menuInfo = new JMenu("Info");
         menuInfo.setMnemonic(KeyEvent.VK_I);
+        menuInfo.setIcon(Icons.getResource("/ico/info.png"));
         menuInfo.add(menuItemAbout);
 
         // final menu bar
@@ -177,6 +183,7 @@ public class Gui extends JFrame {
         searchButton = new JButton("Search");
         searchButton.setToolTipText(searchingGetTitle());
         searchButton.setMnemonic(KeyEvent.VK_A);
+        searchButton.setIcon(Icons.getResource("/ico/search.png"));
         searchButton.addActionListener(buttonsListener);
 
         Container search = Box.createHorizontalBox();
