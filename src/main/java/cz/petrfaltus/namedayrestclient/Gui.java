@@ -30,6 +30,7 @@ public class Gui extends JFrame {
     private static final int GAP_BORDER = 18;
 
     private JMenuItem menuItemExit;
+    private JMenuItem menuItemSearch;
     private JMenuItem menuItemAbout;
 
     private JTextField queryTextField;
@@ -51,7 +52,7 @@ public class Gui extends JFrame {
                 aboutApplication();
             }
 
-            if (source == searchButton) {
+            if ((source == searchButton) || (source == menuItemSearch)) {
                 searching();
             }
         }
@@ -126,6 +127,16 @@ public class Gui extends JFrame {
         menuFile.setMnemonic(KeyEvent.VK_F);
         menuFile.add(menuItemExit);
 
+        // Run menu items
+        menuItemSearch = new JMenuItem("Search");
+        menuItemSearch.setToolTipText(searchingGetTitle());
+        menuItemSearch.setMnemonic(KeyEvent.VK_A);
+        menuItemSearch.addActionListener(menuItemsListener);
+
+        JMenu menuRun = new JMenu("Run");
+        menuRun.setMnemonic(KeyEvent.VK_R);
+        menuRun.add(menuItemSearch);
+
         // horizontal menu glue
         Component horizontalGlue = Box.createHorizontalGlue();
 
@@ -142,6 +153,7 @@ public class Gui extends JFrame {
         // final menu bar
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(menuFile);
+        menuBar.add(menuRun);
         menuBar.add(horizontalGlue);
         menuBar.add(menuInfo);
 
