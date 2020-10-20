@@ -5,4 +5,7 @@ public class Const {
     public static final String CHARSET = "UTF-8";
 
     public static final String EMPTY_STRING = "";
+
+    public static final int APP_WINDOW_WIDTH = 500;
+    public static final int APP_WINDOW_HEIGHT = 700;
 }
