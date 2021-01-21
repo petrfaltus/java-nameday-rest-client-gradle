@@ -3,6 +3,8 @@ The Java application for finding name days for the name or for the date built by
 
 For the operation there must be the **name or date** field specified.
 
+![Application screenshot](application.screenshot.png)
+
 ## Versions
 Now in March 2020 my version of Java is (OpenJDK) **12.0.2** and my version of Gradle is **5.2.1**. I also successfully tested old Java version (SE) **1.7.0_80** and Gradle **4.10.3**.
 
