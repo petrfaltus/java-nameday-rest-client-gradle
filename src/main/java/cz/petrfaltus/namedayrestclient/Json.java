@@ -48,8 +48,8 @@ public class Json {
         return retString;
     }
 
-    public static Map<String,String> decodeResultCountries(String resultJson) {
-        Map<String,String> retMap = null;
+    public static Map<String, String> decodeResultCountries(String resultJson) {
+        Map<String, String> retMap = null;
 
         try {
             JSONParser parser = new JSONParser();
