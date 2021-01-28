@@ -1,5 +1,5 @@
 # Name day REST client
-The Java application for finding name days for the name or for the date built by the Gradle. It is the client that communicates with my own name day REST service.
+The Java AWT/Swing GUI application for finding name days for the name or for the date built by the Gradle. It is the client that communicates using JSONs with my own name day REST service.
 
 For the operation there must be the **name or date** field specified.
 
@@ -11,9 +11,9 @@ Now in March 2020 my version of Java is (OpenJDK) **12.0.2** and my version of G
 The current **Java compatibility setting** in the project is the version **1.7**. If You want to set the version 1.8 or newer, please change the line `sourceCompatibility = 1.7` of *build.gradle* file.
 
 ### Cloning to your computer
-- install GIT and Java on your computer
+- install [GIT] and [Java JDK] on your computer
 - set the operating system environment variable `JAVA_HOME` (the Java machine executable must be located on **%JAVA_HOME%\bin\java.exe**)
-- install Gradle on your computer
+- install [Gradle Build Tool] on your computer
 - clone this repository to your computer by the GIT command `git clone https://github.com/petrfaltus/java-nameday-rest-client-gradle.git`
 
 ### Running under Windows
@@ -31,3 +31,8 @@ Warning - both files *settings.gradle* and *build.gradle* have the **Windows lin
 ## To do (my plans to the future)
 - the search functionality should be running in any **other thread** and there should be also the **Stop** button
 - there is a little language conflict, the application is pure english but the name days REST service czech
+
+
+[GIT]: <https://git-scm.com/>
+[Java JDK]: <https://www.oracle.com/java/technologies/javase-downloads.html>
+[Gradle Build Tool]: <https://gradle.org/>

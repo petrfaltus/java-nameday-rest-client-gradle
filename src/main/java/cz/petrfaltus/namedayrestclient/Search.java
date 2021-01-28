@@ -22,7 +22,7 @@ public class Search {
             }
 
             // decode countries
-            Map<String,String> countries = Json.decodeResultCountries(replyJsonCountries);
+            Map<String, String> countries = Json.decodeResultCountries(replyJsonCountries);
             if (countries == null) {
                 lastError = WEB_REQUEST_FAILED;
                 return null;

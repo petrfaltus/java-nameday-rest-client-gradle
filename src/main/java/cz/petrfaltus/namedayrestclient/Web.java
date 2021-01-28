@@ -19,6 +19,7 @@ public class Web {
             connection = (HttpURLConnection) url.openConnection();
             connection.setUseCaches(false);
             connection.setDoOutput(true);
+            connection.addRequestProperty("User-Agent", Const.USER_AGENT);
             connection.setRequestMethod("POST");
 
             OutputStream os = connection.getOutputStream();
