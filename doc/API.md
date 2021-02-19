@@ -2,132 +2,166 @@
 Application interface description
 (c) Petr Faltus 2020-2021
 
-**All supported countries request**
-----
+---
+## All supported countries request
 Returns all country codes and names supported by the API.
 
-* **URL**
-  http://api.petrfaltus.net/name_day/json/1.0
+-   **URL**
+    <http://api.petrfaltus.net/name_day/json/1.0>
 
-* **Method**
-  `POST`
+-   **Method**
+    `POST`
 
-* **URL Params**
-  None
-
-* **Raw Data Params**
-  * **Required**
-    `method_number : 1`
-
-  * **Optional**
+-   **URL Params**
     None
 
-  * **Example JSON Request**
-    ```javascript
-    {
-      "method_number" : 1
-    }
-    ```
+-   **Form Data Params**
+    None
 
-* **Success Response**
-  * **Code** 200 OK
-    **Content**
-    ```javascript
-    {
-      "error_code" : 0,
-      "error_string" : "ok",
-      "data" : {
-                 "cz" : "Česká republika",
-                 "sk" : "Slovensko"
-               }
-    }
-    ```
+-   **Raw Data Params**
+    -   **Required**
+        | Variable        | Value | Type    |
+        | --------        | ----- | ----    |
+        | `method_number` | 1     | integer |
 
-* **Error Response**
-  * **Code** 200 OK
-    **Content**
-    ```javascript
-    {
-      "error_code" : integer,
-      "error_string" : "message"
-    }
-    ```
-    *(`error_code` != 0)*
+    -   **Optional**
+        None
 
-**Name or date request for the country**
-----
+    -   **Example JSON Request**
+        ```javascript
+        {
+          "method_number" : 1
+        }
+        ```
+
+-   **Success Response**
+    -   **Code**
+        200 OK
+
+    -   **Content**
+        | Variable       | Value          | Type                |
+        | --------       | -----          | ----                |
+        | `error_code`   | 0              | integer             |
+        | `error_string` | "ok"           | string              |
+        | `data`         | *substructure* | list of *Data Item* |
+
+    -   **Data Item Content**
+        | Variable     | Value        | Type   |
+        | --------     | -----        | ----   |
+        | country code | country name | string |
+
+    -   **Example JSON Reply**
+        ```javascript
+        {
+          "error_code" : 0,
+          "error_string" : "ok",
+          "data" : {
+                     "cz" : "Česká republika",
+                     "sk" : "Slovensko"
+                   }
+        }
+        ```
+
+-   **Error Response**
+    -   **Code**
+        200 OK
+
+    -   **Content**
+        | Variable       | Value       | Type    |
+        | --------       | -----       | ----    |
+        | `error_code`   | number <> 0 | integer |
+        | `error_string` | message     | string  |
+
+---
+## Name or date request for the country
 Returns name days for the specified country and requested name/date from the API.
 
-* **URL**
-  http://api.petrfaltus.net/name_day/json/1.0
+-   **URL**
+    <http://api.petrfaltus.net/name_day/json/1.0>
 
-* **Method**
-  `POST`
+-   **Method**
+    `POST`
 
-* **URL Params**
-  None
+-   **URL Params**
+    None
 
-* **Raw Data Params**
-  * **Required**
-    `method_number : 2`
-    `query : [name or date string]`
-    `country : [country code string]`
+-   **Form Data Params**
+    None
 
-  * **Optional**
-    `czech_sensitive : [0|1]`
-    `case_sensitive : [0|1]`
+-   **Raw Data Params**
+    -   **Required**
+        | Variable        | Value        | Type    |
+        | --------        | -----        | ----    |
+        | `method_number` | 2            | integer |
+        | `query`         | name or date | string  |
+        | `country`       | country code | string  |
 
-  * **Example JSON Request**
-    ```javascript
-    {
-      "method_number" : 2,
-      "query" : "petr",
-      "country" : "cz"
-    }
-    ```
-    or
-    ```javascript
-    {
-      "method_number" : 2,
-      "query" : "31.12.",
-      "country" : "cz"
-    }
-    ```
-    or
-    ```javascript
-    {
-      "method_number" : 2,
-      "query" : "Štěpán",
-      "country" : "cz",
-      "czech_sensitive" : 1,
-      "case_sensitive" : 1
-    }
-    ```
+    -   **Optional**
+        | Variable          | Value  | Type    |
+        | --------          | -----  | ----    |
+        | `czech_sensitive` | 0 or 1 | integer |
+        | `case_sensitive`  | 0 or 1 | integer |
 
-* **Success Response**
-  * **Code** 200 OK
-    **Content**
-    ```javascript
-    {
-      "error_code" : 0,
-      "error_string" : "ok",
-      "czech_sensitive" : 0,
-      "case_sensitive" : 0,
-      "data" : [
-                 "Petr a Pavel mají svátek 29.6.",
-                 "Petr má svátek 22.2."
-               ]
-    }
-    ```
-    *(with `czech_sensitive` and `case_sensitive` the values used for this request)*
+    -   **Example JSON Request**
+        ```javascript
+        {
+          "method_number" : 2,
+          "query" : "petr",
+          "country" : "cz"
+        }
+        ```
+        or
+        ```javascript
+        {
+          "method_number" : 2,
+          "query" : "31.12.",
+          "country" : "cz"
+        }
+        ```
+        or
+        ```javascript
+        {
+          "method_number" : 2,
+          "query" : "Štěpán",
+          "country" : "cz",
+          "czech_sensitive" : 1,
+          "case_sensitive" : 1
+        }
+        ```
 
-* **Error Response**
-  * **Code** 200 OK
-    **Content**
-    ```javascript
-    {
-      "error_code" : integer,
-      "error_string" : "message"
-    }
-    ```
-    *(`error_code` != 0)*
+-   **Success Response**
+    -   **Code**
+        200 OK
+
+    -   **Content**
+        | Variable          | Value                          | Type            |
+        | --------          | -----                          | ----            |
+        | `error_code`      | 0                              | integer         |
+        | `error_string`    | "ok"                           | string          |
+        | `czech_sensitive` | 0 or 1 (used for this request) | integer         |
+        | `case_sensitive`  | 0 or 1 (used for this request) | integer         |
+        | `data`            | *substructure*                 | array of string |
+
+    -   **Example JSON Reply**
+        ```javascript
+        {
+          "error_code" : 0,
+          "error_string" : "ok",
+          "czech_sensitive" : 0,
+          "case_sensitive" : 0,
+          "data" : [
+                     "Petr a Pavel mají svátek 29.6.",
+                     "Petr má svátek 22.2."
+                   ]
+        }
+        ```
+
+-   **Error Response**
+    -   **Code**
+        200 OK
+
+    -   **Content**
+        | Variable       | Value       | Type    |
+        | --------       | -----       | ----    |
+        | `error_code`   | number <> 0 | integer |
+        | `error_string` | message     | string  |
