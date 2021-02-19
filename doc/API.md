@@ -1,37 +1,37 @@
 # Name day REST API
 Application interface description
-(c) Petr Faltus 2020
+(c) Petr Faltus 2020-2021
 
-**Get supported countries**
+**All supported countries request**
 ----
-Returns json data about country codes and countries supported by the API.
+Returns all country codes and names supported by the API.
 
 * **URL**
   http://api.petrfaltus.net/name_day/json/1.0
 
-* **Method:**
+* **Method**
   `POST`
 
 * **URL Params**
   None
 
-* **Data Params**
-  * **Required:**
+* **Raw Data Params**
+  * **Required**
     `method_number : 1`
 
-  * **Optional:**
+  * **Optional**
     None
 
-  * **Example JSON Request Data:**
+  * **Example JSON Request**
     ```javascript
     {
       "method_number" : 1
     }
     ```
 
-* **Success Response:**
-  * **Code:** 200 OK
-    **Content:**
+* **Success Response**
+  * **Code** 200 OK
+    **Content**
     ```javascript
     {
       "error_code" : 0,
@@ -43,9 +43,9 @@ Returns json data about country codes and countries supported by the API.
     }
     ```
 
-* **Error Response:**
-  * **Code:** 200 OK
-    **Content:**
+* **Error Response**
+  * **Code** 200 OK
+    **Content**
     ```javascript
     {
       "error_code" : integer,
@@ -56,28 +56,28 @@ Returns json data about country codes and countries supported by the API.
 
 **Name or date request for the country**
 ----
-Returns json data about name days for the specified country and requested name or date.
+Returns name days for the specified country and requested name/date from the API.
 
 * **URL**
   http://api.petrfaltus.net/name_day/json/1.0
 
-* **Method:**
+* **Method**
   `POST`
 
 * **URL Params**
   None
 
-* **Data Params**
-  * **Required:**
+* **Raw Data Params**
+  * **Required**
     `method_number : 2`
     `query : [name or date string]`
     `country : [country code string]`
 
-  * **Optional:**
+  * **Optional**
     `czech_sensitive : [0|1]`
     `case_sensitive : [0|1]`
 
-  * **Example JSON Request Data:**
+  * **Example JSON Request**
     ```javascript
     {
       "method_number" : 2,
@@ -104,9 +104,9 @@ Returns json data about name days for the specified country and requested name o
     }
     ```
 
-* **Success Response:**
-  * **Code:** 200 OK
-    **Content:**
+* **Success Response**
+  * **Code** 200 OK
+    **Content**
     ```javascript
     {
       "error_code" : 0,
@@ -121,9 +121,9 @@ Returns json data about name days for the specified country and requested name o
     ```
     *(with `czech_sensitive` and `case_sensitive` the values used for this request)*
 
-* **Error Response:**
-  * **Code:** 200 OK
-    **Content:**
+* **Error Response**
+  * **Code** 200 OK
+    **Content**
     ```javascript
     {
       "error_code" : integer,
